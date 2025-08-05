@@ -2,6 +2,7 @@ body {
     background-color: #f0f4f7; padding: 50px;
     font-family: Arial, sans-serif; text-align: center;
 }
+
 h1 {
     color: #333;
 }
@@ -16,6 +17,7 @@ h1 {
 
 p {
     font-size: 18px; color: #555;
+
 }
 
 /* Rotulo do campo */
@@ -45,7 +47,7 @@ button {
     cursor: pointer;
 }
 
-/* Efeuto ao passar o mouse no botão */
+/* Efeito ao passar o mouse no botão */
 button:hover {
     background-color: #007bff;
 }
