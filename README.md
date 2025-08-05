@@ -3,7 +3,7 @@
 
 <br clear="both">
 
-<h1 align="left">Projetos e Estudos sobre Projetos PHP :floppy_disk:
+<h1 align="left">Estudos sobre PHP :floppy_disk:
 <br clear="both">
 
 ###
