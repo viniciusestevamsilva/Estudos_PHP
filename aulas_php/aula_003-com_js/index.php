@@ -14,7 +14,7 @@
     <div class="caixa">
     <form id="meuFormulario" method="POST" action="processo.php">
         <label>Digite sua mensagem:</label><br>
-        <input type="text" name="mensagem" required><br>
+        <input type="text" id="mensagem" name="mensagem" required><br>
         <button type="submit">Enviar</button>
     </form> 
     </div>
