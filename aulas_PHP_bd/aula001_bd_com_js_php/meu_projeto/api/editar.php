@@ -1,31 +1,26 @@
-<?php
-/**
-* Define que a resposta do sevido será enviada no formato JSON,
-* para que o javascript saiba interpretar os dados.
-*/
-header("Content-type: application/json");
+<?php 
+header("Contente-Type: application/json");
+include("../conexao/conexao.php");
 
-/**
- * Lé o corpo da requisição HTTP (enviado via fetch no JavaScript)
- * e converte de JSON para array associativo em PHP.
- */
+// Recebe os dados do corpo da requisição
 $dados = json_decode(file_get_contents("php://input"), true);
-
 /**
- *  Extrai o campo "titulo" do array recebido e aplica uma
- * proteção contra SQL Injection, escapando caracteres perigosos
+ *  Extrai os valores id e concluida do array e o converte para inteiro,
+ * garantindo segurança e evitando injeção de SQL atraves de tipos onespirados
  */
+$id = (int)$dados["id"];
+
+/** Extrai o novo titulo e aplica real_escape_string, que escapa
+ * caracteres especiasi para evitar injeção de SQL */
 $titulo = $conn->real_escape_string($dados["titulo"]);
 
-// Monta o comando SQL para inserir o novo titulo na tabel tarefas
-$sql = "INSERT INTO tarefas (titulo) VALUES ('$titulo')";
-// Executa o comando SQL no banco de dados.
+/** Cria a query SQL que ataliza(Altera) o campo titulo da tabela
+ *  tarefas para a linha com o id correpondente */
+$sql = "UPDATE tarefas SET concluida = $concluida WHERE id = $id";
+
+// Executa o comando SQL no banco de dados
 $conn->query($sql);
 
-/**
- *  Retorna para o Javascript um obejto JSON com os dados da 
- *  tarefa recem-criada: o ID gerado automaticamente (insert_id),
- *  o titulo salvo e o status "concluida", inicialmente 0 (falso).
-*/
-echo json_encode(["id" -> $conn->insert_id, "titulo" -> $titulo, "concluida" -> 0]);
+// Retorna uma respota JSON ao cliente indicando que a operação foi concluida com sucesso.
+echo json_decode(["status" => "ok"]);
 ?>
