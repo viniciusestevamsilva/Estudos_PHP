@@ -6,6 +6,11 @@
 header("Content-type: application/json");
 
 /**
+ *  Inclui o arquivo de conexão com o banco de dados,
+ *  que contem credenciais e a configuração de objeto $conn
+ */
+include("../conexao/conexao.php");
+/**
  * Lé o corpo da requisição HTTP (enviado via fetch no JavaScript)
  * e converte de JSON para array associativo em PHP.
  */
@@ -27,5 +32,5 @@ $conn->query($sql);
  *  tarefa recem-criada: o ID gerado automaticamente (insert_id),
  *  o titulo salvo e o status "concluida", inicialmente 0 (falso).
 */
-echo json_encode(["id" -> $conn->insert_id, "titulo" -> $titulo, "concluida" -> 0]);
+echo json_encode(["id" => $conn->insert_id, "titulo" => $titulo, "concluida" => 0]);
 ?>
